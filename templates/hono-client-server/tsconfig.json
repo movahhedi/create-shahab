@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"plugins": [
+			{
+				"name": "ts-plugin-sort-import-suggestions",
+				"moveUpPatterns": ["#/", "@/"/* , "\\.{1,2}/" */],
+				"moveDownPatterns": ["dist"]
+			}
+		]
+	},
+	"include": [
+		"client/src/**/*",
+		"shared/api/**/*",
+	],
+	"exclude": ["node_modules", "**/*.spec.ts"]
+}

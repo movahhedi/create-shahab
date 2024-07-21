@@ -1,0 +1,52 @@
+{
+	"name": "<FILL>-shared",
+	"version": "0.1.0",
+	"private": true,
+	"description": "<FILL>",
+	"homepage": "<FILL>",
+	"bugs": {
+		"url": "<FILL>"
+	},
+	"repository": {
+		"type": "git",
+		"url": "<FILL>"
+	},
+	"license": "<FILL>",
+	"author": "<FILL>",
+	"contributors": [
+		{
+			"name": "<FILL>",
+			"email": "<FILL>",
+			"url": "<FILL>"
+		}
+	],
+	"type": "module",
+	"main": "index.ts",
+	"scripts": {
+		"prepare": "",
+		"types": "tsc --noEmit",
+		"lint": "eslint \"./src/\" --fix --c \"../eslint.config.mjs\" --parser-options project:../tsconfig.eslint.json",
+		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx}\" --write --config \"../prettier.config.mjs\"",
+		"fl": "concurrently -m 1 -c \"bgGreen,bgMagenta\" \"npm:format\" \"npm:lint\"",
+		"fl:shared": "yarn fl",
+		"update": "npx npm-check-updates -i -x \"chalk\"",
+		"clear": "rimraf -G dist build",
+		"clear:nodeModules": "rimraf -G node_modules"
+	},
+	"dependencies": {
+		"email-validator": "^2.0.4",
+		"fast-json-stable-stringify": "^2.1.0",
+		"persian-date": "^1.1.0",
+		"valibot": "^0.34.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.8",
+		"concurrently": "^8.2.2",
+		"eslint": "^9.5.0",
+		"json-types2": "^1.0.0",
+		"npm-check-updates": "^16.14.20",
+		"prettier": "^3.3.2",
+		"rimraf": "^5.0.7"
+	},
+	"packageManager": "yarn@4.3.1"
+}

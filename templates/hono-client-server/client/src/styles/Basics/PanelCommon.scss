@@ -1,0 +1,246 @@
+@use "../Config" as *;
+
+:root,
+html {
+	$Direction: ltr !global;
+	$Opposite-Direction: rtl !global;
+	$Start-Direction: left !global;
+	$End-Direction: right !global;
+	$Transform-Direction: 1 !global;
+
+	--direction: $Direction;
+	--opposite-direction: $Opposite-Direction;
+
+	direction: var(--direction, $Direction);
+	font-size: 100%;
+	font-family: $Font-Persian;
+	color: $Color-Text-Main;
+	background-color: $Color-Body;
+	transition: background-color 200ms;
+
+	// @include light {
+
+	&.lightMode {
+		color: $Color-LightMode-Text-Main;
+		background-color: $Color-LightMode-Body;
+	}
+
+	/* &[dir="ltr"],
+	&:dir(ltr),
+	&.ltr {
+		background-color: #0060c0;
+		direction: ltr;
+		font-family: $Font-English;
+	} */
+
+	// &:dir(rtl),
+
+	&[dir="rtl"],
+	&.rtl {
+		$Direction: rtl !global;
+		$Opposite-Direction: ltr !global;
+		$Start-Direction: right !global;
+		$End-Direction: left !global;
+		$Transform-Direction: -1 !global;
+
+		--direction: $Direction;
+		--opposite-direction: $Opposite-Direction;
+
+		font-family: $Font-Persian;
+	}
+}
+
+*,
+*::before,
+*::after {
+	direction: inherit;
+}
+
+*::selection {
+	color: $Color-Body-Light;
+	background-color: $Color-Accent;
+
+	@include light {
+		color: $Color-LightMode-Body;
+	}
+}
+
+::-webkit-scrollbar {
+	$Size: 10px;
+
+	width: $Size;
+	height: $Size;
+
+	@include mobile {
+		$Size: 5px;
+
+		width: $Size;
+		height: $Size;
+	}
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: lighten($Color-Body, 25%);
+	border-radius: 13px;
+	transition: 300ms;
+
+	/* &:horizontal {
+		border-radius: 13px;
+	} */
+
+	&:hover {
+		// background-color: $Color-Accent-Light;
+		// background-color: #0060c0;
+		background-color: lighten($Color-Body, 40%);
+
+		@include light {
+			background-color: darken($Color-LightMode-Body, 5%);
+		}
+	}
+	// background-color: #004a94;
+	// background-color: $Color-Accent;
+
+	@include light {
+		background-color: darken($Color-LightMode-Body, 15%);
+	}
+}
+
+.app {
+	display: grid;
+	height: 100%;
+	grid-template: "aside main" 1fr / $Sidebar-Width 1fr;
+	overflow: hidden;
+
+	@include tablet {
+		display: grid;
+		grid-template: "aside" auto "main" 1fr / 1fr;
+	}
+}
+
+.mainWrapper {
+	direction: ltr;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-area: main;
+	overflow: auto;
+}
+
+main {
+	direction: var(--direction, $Direction);
+	position: relative;
+	width: 100%;
+	// max-width: 1440px;
+	height: auto;
+	padding: min(1.5rem, 2vw);
+	overflow: visible;
+	// TODO should this be auto?
+	// overflow-x: auto;
+	place-self: start end;
+
+	/* :where(html[dir="ltr"], html:dir(ltr), html.ltr) & {
+		direction: ltr;
+	}
+	:where(html[dir="rtl"], html:dir(rtl), html.rtl) & {
+		direction: rtl;
+	} */
+
+	/* @include tablet {
+		padding-top: 68px;
+	} */
+}
+
+$Logo-Glow-Size: 10px;
+$Logo-Glow: drop-shadow(0 0 $Logo-Glow-Size $Color-Accent);
+$Logo-Glow-Transparent: drop-shadow(0 0 $Logo-Glow-Size transparent);
+
+@keyframes Logo-Glow-Keyframes {
+	0% {
+		filter: $Logo-Glow-Transparent;
+	}
+	20% {
+		filter: $Logo-Glow;
+	}
+	40% {
+		filter: $Logo-Glow-Transparent;
+	}
+}
+
+@mixin Logo-Glow {
+	filter: $Logo-Glow-Transparent;
+	animation: 10s infinite Logo-Glow-Keyframes;
+}
+
+.darkOverlay {
+	position: fixed;
+	inset: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 99;
+}
+
+#myForm,
+.myForm {
+	position: relative;
+	width: 100%;
+	padding: min(8px, 1vw);
+	padding-bottom: min(16px, 3.5vw);
+	box-sizing: border-box;
+}
+
+.simpleText {
+	position: relative;
+	display: block;
+	width: fit-content;
+	min-width: 160px;
+	max-width: 100%;
+	margin-inline-start: 12px;
+	padding: 8px 16px;
+	text-align: start;
+	font-size: $Type-Paragraph-Regular;
+	font-family: inherit;
+	color: $Color-Text-Main;
+	box-sizing: border-box;
+}
+
+.adminTip {
+	display: block;
+	margin: 8px;
+	font-size: 1rem;
+	font-family: inherit;
+	color: $Color-Text-Secondary;
+
+	@include mobile {
+		margin: 0 8px;
+	}
+}
+
+input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+	z-index: -100;
+}
+
+.fileImagePreview {
+	max-width: 100%;
+}
+
+.ck {
+	font-size: 1rem;
+	font-family: inherit;
+	color: black;
+}
+
+// For finding bugs
+
+.undefined,
+#undefined,
+.null,
+#null {
+	color: lime !important;
+	background-color: red !important;
+}

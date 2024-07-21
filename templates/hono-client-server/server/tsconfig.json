@@ -1,0 +1,39 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"lib": ["ESNext"],
+		"target": "es2020",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"outDir": "dist",
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"allowImportingTsExtensions": false,
+		"noEmit": false,
+		"typeRoots": ["./node_modules/@types", "./@types", "./node_modules"],
+		"types": ["vite/client"],
+		"declaration": true,
+		"strict": true,
+		// "baseUrl": "./api",
+		"plugins": [
+			{
+				"name": "ts-plugin-sort-import-suggestions",
+				// Matches `@/`, `../` and `./`, move them up in the suggestions (This is the default config if you leave it empty)
+				"moveUpPatterns": ["%/", "@/", "\\.{1,2}/"],
+				// Move `dist` down in the suggestions, by deafult it's `[]`
+				"moveDownPatterns": ["dist"]
+			}
+		]
+	},
+	"include": ["api/**/*", "../shared/src", "rollup.config.js", "*.cjs"],
+	"exclude": ["node_modules", "**/*.spec.ts"],
+	"ts-node": {
+		"esm": true,
+		"experimentalSpecifierResolution": "node"
+	}
+}

@@ -1,0 +1,69 @@
+@use "../Config" as *;
+
+.hidden {
+	display: none;
+}
+
+.english {
+	direction: ltr;
+	text-align: start;
+	font-family: $Font-English;
+}
+
+.persian {
+	direction: rtl;
+	text-align: start;
+	font-family: $Font-Persian;
+}
+
+.arabic {
+	direction: rtl;
+	text-align: start;
+	font-family: $Font-Arabic;
+}
+
+.ltr {
+	direction: ltr;
+	text-align: start;
+}
+
+.rtl {
+	direction: rtl;
+	text-align: start;
+}
+
+.textAlignStart {
+	text-align: start;
+}
+
+.textAlignEnd {
+	text-align: end;
+}
+
+/* *:dir(rtl) { */
+
+*[dir="rtl"] {
+	direction: rtl;
+	font-family: $Font-Persian;
+}
+
+*[dir="ltr"] {
+	direction: ltr;
+	font-family: $Font-English;
+}
+
+.bold {
+	font-weight: 600;
+}
+
+code,
+.englishMono,
+.mono {
+	direction: ltr;
+	text-align: left;
+	font-family: $Font-Mono;
+}
+
+.isClickable {
+	cursor: pointer;
+}
