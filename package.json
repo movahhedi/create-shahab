@@ -37,8 +37,7 @@
 		"update": "npx npm-check-updates -i"
 	},
 	"dependencies": {
-		"commander": "^12.1.0",
-		"yargs": "^17.7.2"
+		"commander": "^12.1.0"
 	},
 	"devDependencies": {
 		"@types/node": "^20.14.11",

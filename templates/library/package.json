@@ -1,0 +1,47 @@
+{
+	"name": "<FILL>",
+	"version": "0.1.0",
+	"description": "<FILL>",
+	"author": "<FILL>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/<FILL>"
+	},
+	"bugs": {
+		"url": "https://github.com/<FILL>/issues"
+	},
+	"homepage": "https://github.com/<FILL>#readme",
+	"keywords": [],
+	"packageManager": "yarn@4.5.0",
+	"type": "module",
+	"source": "./src/index.ts",
+	"exports": {
+		"require": "./dist/index.cjs",
+		"default": "./dist/index.modern.js"
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.module.js",
+	"unpkg": "./dist/index.umd.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"prepublishOnly": "yarn build",
+		"build": "microbundle",
+		"dev": "microbundle watch",
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"microbundle": "^0.15.1",
+		"typescript": "^5.0.4",
+		"vitest": "^2.0.5"
+	},
+	"cspell": {
+		"version": "0.2",
+		"words": [
+			"microbundle"
+		]
+	}
+}
